@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://com.example/mn/wsdl"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://com.example/mn/wsdl"
+                  targetNamespace="http://com.example/mn/wsdl">
+
+    <wsdl:types>
+        <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+                   targetNamespace="http://com.example/mn/wsdl">
+
+            <xs:element name="IINRequest">
+                <xs:annotation>
+                    <xs:documentation xml:lang="ru">
+                        Запрос ИИН
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Id" type="xs:string">
+                            <xs:annotation>
+                                <xs:documentation xml:lang="ru">
+                                    Идентификатор запроса
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="iin" type="xs:string">
+                            <xs:annotation>
+                                <xs:documentation xml:lang="ru">
+                                    ИИН
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="Person">
+                <xs:annotation>
+                    <xs:documentation xml:lang="ru">
+                        Персона
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="firstName" type="xs:string">
+                            <xs:annotation>
+                                <xs:documentation xml:lang="ru">
+                                    Фамилия
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="lastName" type="xs:string">
+                            <xs:annotation>
+                                <xs:documentation xml:lang="ru">
+                                    Имя
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="patronymic" type="xs:string">
+                            <xs:annotation>
+                                <xs:documentation xml:lang="ru">
+                                    Отчество
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="IINResponse">
+                <xs:annotation>
+                    <xs:documentation xml:lang="ru">
+                        Ответ по ИИН
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Id" type="xs:string">
+                            <xs:annotation>
+                                <xs:documentation xml:lang="ru">
+                                    Идентификатор запроса
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="tns:IINRequest">
+                            <xs:annotation>
+                                <xs:documentation>
+                                    Запрос
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="tns:Person">
+                            <xs:annotation>
+                                <xs:documentation>
+                                    Персона
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="BINRequest">
+                <xs:annotation>
+                    <xs:documentation xml:lang="ru">
+                        Запрос БИН
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Id" type="xs:string">
+                            <xs:annotation>
+                                <xs:documentation xml:lang="ru">
+                                    Идентификатор запроса
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="bin" type="xs:string">
+                            <xs:annotation>
+                                <xs:documentation xml:lang="ru">
+                                    БИН
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element maxOccurs="unbounded" minOccurs="1" ref="tns:Person">
+                            <xs:annotation>
+                                <xs:documentation>
+                                    Учредитель
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
+            <xs:element name="BINResponse">
+                <xs:annotation>
+                    <xs:documentation xml:lang="ru">
+                        Ответ по БИН
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Id" type="xs:string">
+                            <xs:annotation>
+                                <xs:documentation xml:lang="ru">
+                                    Идентификатор запроса
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="tns:BINRequest">
+                            <xs:annotation>
+                                <xs:documentation>
+                                    Запрос
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="companyName" type="xs:string">
+                            <xs:annotation>
+                                <xs:documentation xml:lang="ru">
+                                    Наименование Компании
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:schema>
+    </wsdl:types>
+    <wsdl:message name="iinRequest">
+        <wsdl:part element="tns:IINRequest" name="IINRequest">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="iinResponse">
+        <wsdl:part element="tns:IINResponse" name="IINResponse">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="binRequest">
+        <wsdl:part element="tns:BINRequest" name="BINRequest">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="binResponse">
+        <wsdl:part element="tns:BINResponse" name="BINResponse">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="port">
+        <wsdl:operation name="getByIIN">
+            <wsdl:input message="tns:iinRequest" name="IinRequest">
+            </wsdl:input>
+            <wsdl:output message="tns:iinResponse" name="IinResponse">
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getByBIN">
+            <wsdl:input message="tns:binRequest" name="BinRequest">
+            </wsdl:input>
+            <wsdl:output message="tns:binResponse" name="BinResponse">
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="portSoap" type="tns:port">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="getByIIN">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="IinRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="IinResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="getByBIN">
+            <soap:operation soapAction=""/>
+            <wsdl:input name="BinRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="BinResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="service">
+        <wsdl:port binding="tns:portSoap" name="portSoap">
+            <soap:address location="http://localhost:8080/endpoint"/>
+        </wsdl:port>
+    </wsdl:service>
+
+</wsdl:definitions>
