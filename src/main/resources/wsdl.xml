@@ -7,6 +7,32 @@
         <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
                    targetNamespace="http://com.example/mn/wsdl">
 
+            <xs:element name="ResponceStatus">
+                <xs:annotation>
+                    <xs:documentation xml:lang="ru">
+                        Статус ответа
+                    </xs:documentation>
+                </xs:annotation>
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="code" type="xs:int">
+                            <xs:annotation>
+                                <xs:documentation xml:lang="ru">
+                                    Код статуса
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element name="description" type="xs:string">
+                            <xs:annotation>
+                                <xs:documentation xml:lang="ru">
+                                    Описание статуса
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+
             <xs:element name="IINRequest">
                 <xs:annotation>
                     <xs:documentation xml:lang="ru">
@@ -81,6 +107,13 @@
                                 </xs:documentation>
                             </xs:annotation>
                         </xs:element>
+                        <xs:element ref="tns:ResponceStatus">
+                            <xs:annotation>
+                                <xs:documentation xml:lang="ru">
+                                    Статус ответа
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
                         <xs:element ref="tns:IINRequest">
                             <xs:annotation>
                                 <xs:documentation>
@@ -137,6 +170,13 @@
                             <xs:annotation>
                                 <xs:documentation xml:lang="ru">
                                     Идентификатор запроса
+                                </xs:documentation>
+                            </xs:annotation>
+                        </xs:element>
+                        <xs:element ref="tns:ResponceStatus">
+                            <xs:annotation>
+                                <xs:documentation xml:lang="ru">
+                                    Статус ответа
                                 </xs:documentation>
                             </xs:annotation>
                         </xs:element>
